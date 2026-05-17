@@ -1,3 +1,4 @@
-# MCSOS M1
+# MCSOS 
 
-Initial setup for MCOS milestone 1.
+Educational x86_64 hobby operating system project.
+
