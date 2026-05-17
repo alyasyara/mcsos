@@ -1,15 +1,7 @@
-#include "../limine/limine.h"
+#include "../arch/x86_64/serial.h"
+#include "../include/log.h"
 
-void serial_init();
-void serial_write(const char* str);
-
-
-void kmain(void);
-void _start(void) __attribute__((alias("kmain")));
-__attribute__((used, section(".limine_requests")))
-static volatile LIMINE_BASE_REVISION(3);
-
-static void halt_forever() {
+static void halt_forever(void) {
     while (1) {
         __asm__ volatile ("hlt");
     }
@@ -18,8 +10,8 @@ static void halt_forever() {
 void kmain(void) {
     serial_init();
 
-    serial_write("[MCSOS M2] Kernel boot success\n");
-    serial_write("[MCSOS M2] Early serial console active\n");
+    log_info("M3 kernel initialized");
+    log_info("Serial logging active");
 
     halt_forever();
 }

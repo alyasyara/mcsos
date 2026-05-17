@@ -1,7 +1,29 @@
-.PHONY: proof clean
+CC=clang
+LD=ld.lld
 
-proof:
-	./tools/scripts/build_probe.sh
+CFLAGS=-target x86_64-unknown-none-elf \
+-ffreestanding \
+-fno-stack-protector \
+-mno-red-zone \
+-mcmodel=kernel \
+-Wall -Wextra -O2
+
+KERNEL_OBJS=\
+kernel/core/kmain.o \
+kernel/core/log.o \
+kernel/arch/x86_64/serial.o
+
+.PHONY: all clean
+
+all: build/kernel.elf
+
+build/kernel.elf: $(KERNEL_OBJS)
+	mkdir -p build
+	$(LD) -T linker.ld -nostdlib -o $@ $(KERNEL_OBJS) -Map=build/kernel.map
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -rf build/proof
+	rm -rf build
+	find . -name '*.o' -delete
