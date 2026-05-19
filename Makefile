@@ -11,7 +11,8 @@ CFLAGS=-target x86_64-unknown-none-elf \
 KERNEL_OBJS=\
 kernel/core/kmain.o \
 kernel/core/log.o \
-kernel/arch/x86_64/serial.o
+kernel/arch/x86_64/serial.o \
+kernel/arch/x86_64/interrupt/idt.o
 
 .PHONY: all clean
 

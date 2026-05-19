@@ -1,4 +1,5 @@
 #include "../arch/x86_64/serial.h"
+#include "../arch/x86_64/interrupt/idt.h"
 #include "../include/log.h"
 
 static void halt_forever(void) {
@@ -9,6 +10,8 @@ static void halt_forever(void) {
 
 void kmain(void) {
     serial_init();
+
+    idt_init();
 
     log_info("M3 kernel initialized");
     log_info("Serial logging active");
