@@ -12,7 +12,8 @@ KERNEL_OBJS=\
 kernel/core/kmain.o \
 kernel/core/log.o \
 kernel/arch/x86_64/serial.o \
-kernel/arch/x86_64/interrupt/idt.o
+kernel/arch/x86_64/interrupt/idt.o \
+kernel/arch/x86_64/interrupt/isr.o
 
 .PHONY: all clean
 
@@ -24,6 +25,9 @@ build/kernel.elf: $(KERNEL_OBJS)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
+
+%.o: %.asm
+	nasm -f elf64 $< -o $@
 
 clean:
 	rm -rf build
