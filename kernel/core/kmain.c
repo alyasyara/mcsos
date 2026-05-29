@@ -12,10 +12,11 @@ void kmain(void) {
     serial_init();
 
     idt_init();
-    
-    int x = 1 / 0;
-    log_info("M3 kernel initialized");
-    log_info("Serial logging active");
+
+    log_info("M6 kernel initialized");
+    log_info("Interrupt handler active");
+
+    __asm__ volatile ("int $0x3");
 
     halt_forever();
 }
