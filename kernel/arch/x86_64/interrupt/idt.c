@@ -5,6 +5,12 @@ struct idt_ptr idtp;
 
 extern void isr_stub(void);
 
+__attribute__((interrupt))
+void breakpoint_handler(void* frame) {
+    (void)frame;
+    asm volatile ("cli; hlt");
+}
+
 static void set_idt_gate(int n, uint64_t handler) {
     idt[n].offset_low = handler & 0xFFFF;
     idt[n].selector = 0x28;
