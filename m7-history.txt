@@ -1,0 +1,25 @@
+535  git checkout -b m7-vmm
+540  nano include/vmm.h
+542  nano src/vmm.c
+546  nano include/types.h
+551  nano include/vmm.h
+556  make
+557  make clean
+558  make
+559  nano Makefile
+560  make clean
+561  make
+563  mkdir -p tests
+564  touch tests/test_vmm_host.c
+567  git add .
+568  git commit -m "M7 checkpoint before full implementation"
+569  nano tests/test_vmm_host.c
+571  wc -l src/vmm.c
+572  nano src/vmm.c
+573  wc -l src/vmm.c
+574  nano src/vmm.c
+575  make clean
+576  make
+577  git add .
+578  git commit -m "Complete M7 virtual memory manager"
+579  git push -u origin m7-vmm
