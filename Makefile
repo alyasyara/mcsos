@@ -7,7 +7,8 @@ kernel/core/log.o \
 kernel/arch/x86_64/serial.o \
 kernel/arch/x86_64/interrupt/idt.o \
 kernel/arch/x86_64/interrupt/isr.o \
-src/pmm.o
+src/pmm.o \
+src/vmm.o
 
 all: build/kernel.elf
 
@@ -32,6 +33,9 @@ kernel/arch/x86_64/interrupt/isr.o:
 
 src/pmm.o:
 	$(CC) $(CFLAGS) -c src/pmm.c -o src/pmm.o
+
+src/vmm.o:
+	$(CC) $(CFLAGS) -c src/vmm.c -o src/vmm.o
 
 clean:
 	rm -rf build
