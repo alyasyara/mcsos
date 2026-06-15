@@ -1,0 +1,100 @@
+  639  cd ~/src/mcsos
+  640  git branch
+  641  git checkout main
+  642  git checkout -b m9-scheduler
+  643  git branch
+  644  mkdir -p kernel/sched
+  645  mkdir -p kernel/arch/x86_64
+  646  mkdir -p tests
+  647  mkdir -p scripts
+  648  mkdir -p build/m9
+  649  mkdir -p evidence/m9
+  650  touch include/mcsos_thread.h
+  651  touch kernel/sched/mcsos_thread.c
+  652  touch kernel/arch/x86_64/context_switch.S
+  653  touch tests/test_scheduler.c
+  654  touch scripts/check_m9_scheduler.sh
+  655  tree include kernel tests scripts -L 2
+  656  ls -l
+  657  ls include
+  658  pwd
+  659  git checkout m8-kheap
+  660  ls
+  661  ls include
+  662  git checkout -b m9-scheduler
+  663  git branch -D m9-scheduler
+  664  git checkout -b m9-scheduler
+  665  git branch
+  666  mkdir -p kernel/sched
+  667  mkdir -p kernel/arch/x86_64
+  668  mkdir -p evidence/m9
+  669  mkdir -p build/m9
+  670  touch include/mcsos_thread.h
+  671  touch kernel/sched/mcsos_thread.c
+  672  touch kernel/arch/x86_64/context_switch.S
+  673  touch tests/test_scheduler.c
+  674  touch scripts/check_m9_scheduler.sh
+  675  tree include kernel tests scripts -L 2
+  676  nano include/mcsos_thread.h
+  677  wc -l include/mcsos_thread.h
+  678  nano kernel/sched/mcsos_thread.c
+  679  wc -l kernel/sched/mcsos_thread.c
+  680  nano kernel/arch/x86_64/context_switch.S
+  681  cat kernel/arch/x86_64/context_switch.S
+  682  nano tests/test_scheduler.c
+  683  wc -l tests/test_scheduler.c
+  684  nano scripts/check_m9_scheduler.sh
+  685  chmod +x scripts/check_m9_scheduler.sh
+  686  cat scripts/check_m9_scheduler.sh
+  687  nano Makefile
+  688  make m9-scheduler-host-test
+  689  make m9-audit
+  690  git status
+  691  git add .
+  692  git commit -m "Complete M9 scheduler foundation"
+  693  git push -u origin m9-scheduler
+  694  history | tail -100 > m9-history.txt
+  695  cat m9-history.txt
+  696  git add m9-history.txt
+  697  git commit -m "Add M9 development history"
+  698  git push
+  699  git status
+  700  git checkout m9-scheduler
+  701  git checkout -b m10-syscall
+  702  git branch
+  703  mkdir -p include/mcsos
+  704  mkdir -p kernel/syscall
+  705  mkdir -p tests
+  706  mkdir -p scripts
+  707  mkdir -p logs
+  708  mkdir -p build/m10
+  709  touch include/mcsos/syscall.h
+  710  touch kernel/syscall/syscall.c
+  711  touch kernel/syscall/syscall_entry.S
+  712  touch tests/test_syscall_host.c
+  713  touch scripts/m10_preflight.sh
+  714  touch scripts/m10_qemu_smoke.sh
+  715  tree include kernel tests scripts -L 2
+  716  nano include/mcsos/syscall.h
+  717  wc -l include/mcsos/syscall.h
+  718  nano kernel/syscall/syscall.c
+  719  wc -l kernel/syscall/syscall.c
+  720  nano kernel/syscall/syscall.c
+  721  wc -l kernel/syscall/syscall.c
+  722  nano kernel/syscall/syscall_entry.S
+  723  cat kernel/syscall/syscall_entry.S
+  724  nano tests/test_syscall_host.c
+  725  wc -l tests/test_syscall_host.c
+  726  nano Makefile
+  727  nano scripts/m10_preflight.sh
+  728  chmod +x scripts/m10_preflight.sh
+  729  nano scripts/m10_qemu_smoke.sh
+  730  chmod +x scripts/m10_qemu_smoke.sh
+  731  make m10-host-test
+  732  make m10-preflight
+  733  make m10-qemu-smoke
+  734  git status
+  735  git add .
+  736  git commit -m "Complete M10 syscall foundation"
+  737  git push -u origin m10-syscall
+  738  history | tail -100 > m10-history.txt
