@@ -39,3 +39,12 @@ m9-scheduler-host-test:
 
 m9-audit:
 	./scripts/check_m9_scheduler.sh
+m10-host-test:
+	gcc -Iinclude tests/test_syscall_host.c kernel/syscall/syscall.c -o build/m10/test_syscall
+	build/m10/test_syscall
+
+m10-preflight:
+	./scripts/m10_preflight.sh
+
+m10-qemu-smoke:
+	./scripts/m10_qemu_smoke.sh
