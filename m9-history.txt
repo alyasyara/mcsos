@@ -1,0 +1,100 @@
+  595  git checkout main
+  596  mkdir -p include/mcsos
+  597  mkdir -p kernel/mm
+  598  mkdir -p tests
+  599  mkdir -p scripts
+  600  mkdir -p build/m8
+  601  tree include kernel tests scripts -L 2
+  602  git checkout -b m8-kheap
+  603  git branch
+  604  touch include/mcsos/kmem.h
+  605  touch kernel/mm/kmem.c
+  606  touch tests/test_kmem.c
+  607  touch scripts/check_m8_kmem.sh
+  608  tree include kernel/mm tests scripts -L 2
+  609  nano include/mcsos/kmem.h
+  610  cat include/mcsos/kmem.h
+  611  nano kernel/mm/kmem.c
+  612  wc -l kernel/mm/kmem.c
+  613  nano kernel/mm/kmem.c
+  614  wc -l kernel/mm/kmem.c
+  615  nano kernel/mm/kmem.c
+  616  wc -l kernel/mm/kmem.c
+  617  nano tests/test_kmem.c
+  618  wc -l tests/test_kmem.c
+  619  nano scripts/check_m8_kmem.sh
+  620  chmod +x scripts/check_m8_kmem.sh
+  621  cat scripts/check_m8_kmem.sh
+  622  nano Makefile
+  623  tail -10 Makefile
+  624  make m8-kmem-host-test
+  625  make m8-audit
+  626  cat kernel/mm/kmem.c
+  627  nano kernel/mm/kmem.c
+  628  make m8-kmem-host-test
+  629  make m8-audit
+  630  git add .
+  631  git commit -m "Complete M8 kernel heap allocator"
+  632  git push -u origin m8-kheap
+  633  history | tail -80 > m8-history.txt
+  634  cat m8-history.txt
+  635  git add m8-history.txt
+  636  git commit -m "Add M8 development history"
+  637  git push
+  638  git status
+  639  cd ~/src/mcsos
+  640  git branch
+  641  git checkout main
+  642  git checkout -b m9-scheduler
+  643  git branch
+  644  mkdir -p kernel/sched
+  645  mkdir -p kernel/arch/x86_64
+  646  mkdir -p tests
+  647  mkdir -p scripts
+  648  mkdir -p build/m9
+  649  mkdir -p evidence/m9
+  650  touch include/mcsos_thread.h
+  651  touch kernel/sched/mcsos_thread.c
+  652  touch kernel/arch/x86_64/context_switch.S
+  653  touch tests/test_scheduler.c
+  654  touch scripts/check_m9_scheduler.sh
+  655  tree include kernel tests scripts -L 2
+  656  ls -l
+  657  ls include
+  658  pwd
+  659  git checkout m8-kheap
+  660  ls
+  661  ls include
+  662  git checkout -b m9-scheduler
+  663  git branch -D m9-scheduler
+  664  git checkout -b m9-scheduler
+  665  git branch
+  666  mkdir -p kernel/sched
+  667  mkdir -p kernel/arch/x86_64
+  668  mkdir -p evidence/m9
+  669  mkdir -p build/m9
+  670  touch include/mcsos_thread.h
+  671  touch kernel/sched/mcsos_thread.c
+  672  touch kernel/arch/x86_64/context_switch.S
+  673  touch tests/test_scheduler.c
+  674  touch scripts/check_m9_scheduler.sh
+  675  tree include kernel tests scripts -L 2
+  676  nano include/mcsos_thread.h
+  677  wc -l include/mcsos_thread.h
+  678  nano kernel/sched/mcsos_thread.c
+  679  wc -l kernel/sched/mcsos_thread.c
+  680  nano kernel/arch/x86_64/context_switch.S
+  681  cat kernel/arch/x86_64/context_switch.S
+  682  nano tests/test_scheduler.c
+  683  wc -l tests/test_scheduler.c
+  684  nano scripts/check_m9_scheduler.sh
+  685  chmod +x scripts/check_m9_scheduler.sh
+  686  cat scripts/check_m9_scheduler.sh
+  687  nano Makefile
+  688  make m9-scheduler-host-test
+  689  make m9-audit
+  690  git status
+  691  git add .
+  692  git commit -m "Complete M9 scheduler foundation"
+  693  git push -u origin m9-scheduler
+  694  history | tail -100 > m9-history.txt
