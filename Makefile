@@ -33,3 +33,9 @@ m8-kmem-host-test:
 
 m8-audit:
 	./scripts/check_m8_kmem.sh
+m9-scheduler-host-test:
+	gcc -Iinclude tests/test_scheduler.c kernel/sched/mcsos_thread.c -o build/m9/test_scheduler
+	build/m9/test_scheduler
+
+m9-audit:
+	./scripts/check_m9_scheduler.sh
