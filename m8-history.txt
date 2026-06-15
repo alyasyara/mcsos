@@ -1,0 +1,80 @@
+  554  cat include/pmm.h
+  555  tree kernel -L 3
+  556  make
+  557  make clean
+  558  make
+  559  nano Makefile
+  560  make clean
+  561  make
+  562  cat src/vmm.c
+  563  mkdir -p tests
+  564  touch tests/test_vmm_host.c
+  565  ls tests
+  566  cat include/vmm.h
+  567  git add .
+  568  git commit -m "M7 checkpoint before full implementation"
+  569  nano tests/test_vmm_host.c
+  570  cat tests/test_vmm_host.c | tail -5
+  571  wc -l src/vmm.c
+  572  nano src/vmm.c
+  573  wc -l src/vmm.c
+  574  nano src/vmm.c
+  575  make clean
+  576  make
+  577  git add .
+  578  git commit -m "Complete M7 virtual memory manager"
+  579  git push -u origin m7-vmm
+  580  zip -r m7-vmm.zip include src tests Makefile
+  581  ls
+  582  git remote -v
+  583  cat m6-history.txt
+  584  history > m7-history.txt
+  585  cat m7-history.txt
+  586  history | tail -60 > m7-history.txt
+  587  cat m7-history.txt
+  588  nano m7-history.txt
+  589  cat m7-history.txt
+  590  git add m7-history.txt
+  591  git commit -m "Add M7 development history"
+  592  git push
+  593  cd ~/src/mcsos
+  594  git branch
+  595  git checkout main
+  596  mkdir -p include/mcsos
+  597  mkdir -p kernel/mm
+  598  mkdir -p tests
+  599  mkdir -p scripts
+  600  mkdir -p build/m8
+  601  tree include kernel tests scripts -L 2
+  602  git checkout -b m8-kheap
+  603  git branch
+  604  touch include/mcsos/kmem.h
+  605  touch kernel/mm/kmem.c
+  606  touch tests/test_kmem.c
+  607  touch scripts/check_m8_kmem.sh
+  608  tree include kernel/mm tests scripts -L 2
+  609  nano include/mcsos/kmem.h
+  610  cat include/mcsos/kmem.h
+  611  nano kernel/mm/kmem.c
+  612  wc -l kernel/mm/kmem.c
+  613  nano kernel/mm/kmem.c
+  614  wc -l kernel/mm/kmem.c
+  615  nano kernel/mm/kmem.c
+  616  wc -l kernel/mm/kmem.c
+  617  nano tests/test_kmem.c
+  618  wc -l tests/test_kmem.c
+  619  nano scripts/check_m8_kmem.sh
+  620  chmod +x scripts/check_m8_kmem.sh
+  621  cat scripts/check_m8_kmem.sh
+  622  nano Makefile
+  623  tail -10 Makefile
+  624  make m8-kmem-host-test
+  625  make m8-audit
+  626  cat kernel/mm/kmem.c
+  627  nano kernel/mm/kmem.c
+  628  make m8-kmem-host-test
+  629  make m8-audit
+  630  git add .
+  631  git commit -m "Complete M8 kernel heap allocator"
+  632  git push -u origin m8-kheap
+  633  history | tail -80 > m8-history.txt
