@@ -27,3 +27,9 @@ build/kernel.elf: $(KERNEL_OBJS)
 clean:
 	rm -rf build
 	find . -name '*.o' -delete
+m8-kmem-host-test:
+	gcc -Iinclude tests/test_kmem.c kernel/mm/kmem.c -o build/m8/test_kmem
+	build/m8/test_kmem
+
+m8-audit:
+	./scripts/check_m8_kmem.sh
