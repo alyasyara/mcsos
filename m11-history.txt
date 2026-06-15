@@ -1,0 +1,100 @@
+  691  git add .
+  692  git commit -m "Complete M9 scheduler foundation"
+  693  git push -u origin m9-scheduler
+  694  history | tail -100 > m9-history.txt
+  695  cat m9-history.txt
+  696  git add m9-history.txt
+  697  git commit -m "Add M9 development history"
+  698  git push
+  699  git status
+  700  git checkout m9-scheduler
+  701  git checkout -b m10-syscall
+  702  git branch
+  703  mkdir -p include/mcsos
+  704  mkdir -p kernel/syscall
+  705  mkdir -p tests
+  706  mkdir -p scripts
+  707  mkdir -p logs
+  708  mkdir -p build/m10
+  709  touch include/mcsos/syscall.h
+  710  touch kernel/syscall/syscall.c
+  711  touch kernel/syscall/syscall_entry.S
+  712  touch tests/test_syscall_host.c
+  713  touch scripts/m10_preflight.sh
+  714  touch scripts/m10_qemu_smoke.sh
+  715  tree include kernel tests scripts -L 2
+  716  nano include/mcsos/syscall.h
+  717  wc -l include/mcsos/syscall.h
+  718  nano kernel/syscall/syscall.c
+  719  wc -l kernel/syscall/syscall.c
+  720  nano kernel/syscall/syscall.c
+  721  wc -l kernel/syscall/syscall.c
+  722  nano kernel/syscall/syscall_entry.S
+  723  cat kernel/syscall/syscall_entry.S
+  724  nano tests/test_syscall_host.c
+  725  wc -l tests/test_syscall_host.c
+  726  nano Makefile
+  727  nano scripts/m10_preflight.sh
+  728  chmod +x scripts/m10_preflight.sh
+  729  nano scripts/m10_qemu_smoke.sh
+  730  chmod +x scripts/m10_qemu_smoke.sh
+  731  make m10-host-test
+  732  make m10-preflight
+  733  make m10-qemu-smoke
+  734  git status
+  735  git add .
+  736  git commit -m "Complete M10 syscall foundation"
+  737  git push -u origin m10-syscall
+  738  history | tail -100 > m10-history.txt
+  739  git add m10-history.txt
+  740  git commit -m "Add M10 development history"
+  741  git push
+  742  git status
+  743  cat m10-history.txt
+  744  git status
+  745  git branch
+  746  git checkout m10-syscall
+  747  git checkout -b praktikum-m11-elf-user-loader
+  748  git branch
+  749  mkdir -p kernel/user
+  750  mkdir -p include/mcsos/user
+  751  mkdir -p tests/m11
+  752  mkdir -p scripts
+  753  mkdir -p build
+  754  tree kernel include tests -L 3
+  755  nano include/mcsos/user/m11_elf_loader.h
+  756  wc -l include/mcsos/user/m11_elf_loader.h
+  757  nano kernel/user/m11_elf_loader.c
+  758  wc -l kernel/user/m11_elf_loader.c
+  759  nano kernel/user/m11_elf_loader.c
+  760  wc -l kernel/user/m11_elf_loader.c
+  761  nano tests/m11/m11_host_test.c
+  762  wc -l tests/m11/m11_host_test.c
+  763  nano Makefile.m11
+  764  wc -l Makefile.m11
+  765  mkdir -p build
+  766  make -f Makefile.m11 CC=clang host-test | tee build/m11_host_test.log
+  767  cat Makefile.m11
+  768  nano Makefile.m11
+  769  make -f Makefile.m11 CC=clang host-test | tee build/m11_host_test.log
+  770  nano Makefile.m11
+  771  make -f Makefile.m11 CC=clang host-test
+  772  nl -ba Makefile.m11 | sed -n '1,20p'
+  773  nano Makefile.m11
+  774  nl -ba Makefile.m11 | sed -n '13,35p'
+  775  make -f Makefile.m11 CC=clang host-test
+  776  nano Makefile.m11
+  777  make -f Makefile.m11 CC=clang host-test
+  778  nano kernel/user/m11_elf_loader.c
+  779  make -f Makefile.m11 CC=clang host-test
+  780  nano tests/m11/m11_host_test.c
+  781  head -1 tests/m11/m11_host_test.c
+  782  make -f Makefile.m11 CC=clang host-test
+  783  make -f Makefile.m11 CC=clang freestanding | tee build/m11_freestanding.log
+  784  make -f Makefile.m11 CC=clang audit | tee build/m11_audit.log
+  785  git status
+  786  git add .
+  787  git commit -m "Complete M11 ELF64 user loader foundation"
+  788  git push -u origin m11-elf-loader
+  789  git push -u origin praktikum-m11-elf-user-loader
+  790  history | tail -100 > m11-history.txt
