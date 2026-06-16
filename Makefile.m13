@@ -1,0 +1,36 @@
+CC ?= clang
+HOSTCC ?= cc
+NM ?= nm
+READELF ?= readelf
+OBJDUMP ?= objdump
+
+CFLAGS_COMMON := -std=c17 -Wall -Wextra -Werror -Iinclude
+KERNEL_CFLAGS := $(CFLAGS_COMMON) --target=x86_64-unknown-none -ffreestanding -fno-builtin -fno-stack-protector -fno-pic -mno-red-zone -O2
+HOST_CFLAGS := $(CFLAGS_COMMON) -O2
+
+VFS_SRCS := kernel/vfs/ramfs.c
+BUILD := build/m13
+
+.PHONY: all clean host-test freestanding audit
+
+all: host-test freestanding audit
+
+$(BUILD):
+	mkdir -p $(BUILD)
+
+host-test: $(BUILD)
+	$(HOSTCC) $(HOST_CFLAGS) $(VFS_SRCS) tests/m13_vfs_host_test.c -o $(BUILD)/m13_vfs_host_test
+	$(BUILD)/m13_vfs_host_test | tee $(BUILD)/host-test.log
+
+freestanding: $(BUILD)
+	$(CC) $(KERNEL_CFLAGS) -c kernel/vfs/ramfs.c -o $(BUILD)/ramfs.o
+
+audit: freestanding
+	$(NM) -u $(BUILD)/ramfs.o | tee $(BUILD)/nm-undefined.txt
+	$(READELF) -h $(BUILD)/ramfs.o | tee $(BUILD)/readelf-ramfs.txt
+	$(OBJDUMP) -d $(BUILD)/ramfs.o | tee $(BUILD)/objdump-ramfs.txt
+	sha256sum $(BUILD)/ramfs.o $(BUILD)/m13_vfs_host_test > $(BUILD)/sha256sums.txt
+	@! grep -q ' U ' $(BUILD)/nm-undefined.txt
+
+clean:
+	rm -rf build/m13
