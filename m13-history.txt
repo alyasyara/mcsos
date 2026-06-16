@@ -1,0 +1,100 @@
+  767  cat Makefile.m11
+  768  nano Makefile.m11
+  769  make -f Makefile.m11 CC=clang host-test | tee build/m11_host_test.log
+  770  nano Makefile.m11
+  771  make -f Makefile.m11 CC=clang host-test
+  772  nl -ba Makefile.m11 | sed -n '1,20p'
+  773  nano Makefile.m11
+  774  nl -ba Makefile.m11 | sed -n '13,35p'
+  775  make -f Makefile.m11 CC=clang host-test
+  776  nano Makefile.m11
+  777  make -f Makefile.m11 CC=clang host-test
+  778  nano kernel/user/m11_elf_loader.c
+  779  make -f Makefile.m11 CC=clang host-test
+  780  nano tests/m11/m11_host_test.c
+  781  head -1 tests/m11/m11_host_test.c
+  782  make -f Makefile.m11 CC=clang host-test
+  783  make -f Makefile.m11 CC=clang freestanding | tee build/m11_freestanding.log
+  784  make -f Makefile.m11 CC=clang audit | tee build/m11_audit.log
+  785  git status
+  786  git add .
+  787  git commit -m "Complete M11 ELF64 user loader foundation"
+  788  git push -u origin m11-elf-loader
+  789  git push -u origin praktikum-m11-elf-user-loader
+  790  history | tail -100 > m11-history.txt
+  791  git add m11-history.txt
+  792  git commit -m "Add M11 development history"
+  793  git push
+  794  git status
+  795  cat m11-history.txt
+  796  git checkout -b praktikum-m12-sync
+  797  mkdir -p include kernel/sync tests scripts evidence/M12git checkout -b praktikum-m12-sync
+  798  mkdir -p include kernel/sync tests scripts evidence/M12
+  799  cd ~/src/mcsos
+  800  pwdpwd
+  801  pwd
+  802  git checkout -b praktikum-m12-sync
+  803  mkdir -p include kernel/sync tests scripts evidence/M12
+  804  nano include/mcs_sync.h
+  805  wc -l include/mcs_sync.h
+  806  nano kernel/sync/lockdep.c
+  807  wc -l kernel/sync/lockdep.c
+  808  nano kernel/sync/spinlock.c
+  809  cat kernel/sync/spinlock.c
+  810  nano kernel/sync/mutex.c
+  811  wc -l kernel/sync/mutex.c
+  812  nano tests/m12_sync_host_test.c
+  813  wc -l tests/m12_sync_host_test.c
+  814  make -f Makefile.m12 clean
+  815  make -f Makefile.m12 all CC=clang HOSTCC=clang
+  816  ls -l Makefile.m12
+  817  nano Makefile.m12
+  818  nl -ba Makefile.m12
+  819  nl -ba Makefile.m12 | sed -n '10,40p'
+  820  make -f Makefile.m12 clean
+  821  make -f Makefile.m12 host-test CC=clang HOSTCC=clang
+  822  make -f Makefile.m12 freestanding CC=clang
+  823  make -f Makefile.m12 audit CC=clang
+  824  make -f Makefile.m12 host-test CC=clang HOSTCC=clang
+  825  git status
+  826  git add .
+  827  git commit -m "Complete M12 synchronization foundation"
+  828  git push -u origin praktikum-m12-sync
+  829  history | tail -100 > m12-history.txt
+  830  git add m12-history.txt
+  831  git commit -m "Add M12 development history"
+  832  git push
+  833  make -f Makefile.m12 host-test CC=clang HOSTCC=clang
+  834  cat m12-history.txt
+  835  history | sed -n '796,829p' > m12-history-clean.txt
+  836  cat m12-history-clean.txt
+  837  [200~cd ~/src/mcsos
+  838  git checkout -b praktikum-m13-vfs-ramfs
+  839  mkdir -p include kernel/vfs tests build/m13~cd ~/src/mcsos
+  840  git checkout -b praktikum-m13-vfs-ramfs
+  841  mkdir -p include kernel/vfs tests build/m13
+  842  cd ~/src/mcsos
+  843  git checkout -b praktikum-m13-vfs-ramfs
+  844  mkdir -p include kernel/vfs tests build/m13
+  845  git branch
+  846  git checkout praktikum-m13-vfs-ramfs
+  847  tree -L 2 include kernel tests build
+  848  git branch
+  849  tree -L 2 include kernel tests build
+  850  nano include/mcs_vfs.h
+  851  wc -l include/mcs_vfs.h
+  852  nano kernel/vfs/ramfs.c
+  853  wc -l kernel/vfs/ramfs.c
+  854  nano tests/m13_vfs_host_test.c
+  855  wc -l tests/m13_vfs_host_test.c
+  856  nano Makefile.m13
+  857  nl -ba Makefile.m13
+  858  cat -te Makefile.m13 | sed -n '18,36p'
+  859  make -f Makefile.m13 host-test CC=clang HOSTCC=clang
+  860  make -f Makefile.m13 freestanding CC=clang
+  861  make -f Makefile.m13 audit CC=clang
+  862  git status
+  863  git add .
+  864  git commit -m "Complete M13 VFS RAMFS foundation"
+  865  git push -u origin praktikum-m13-vfs-ramfs
+  866  history | tail -100 > m13-history.txt
