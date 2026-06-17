@@ -1,0 +1,40 @@
+CC ?= clang
+HOSTCC ?= cc
+NM ?= nm
+READELF ?= readelf
+OBJDUMP ?= objdump
+
+CFLAGS_COMMON := -std=c17 -Wall -Wextra -Werror -Iinclude
+KERNEL_CFLAGS := $(CFLAGS_COMMON) --target=x86_64-unknown-none -ffreestanding -fno-builtin -fno-stack-protector -fno-pic -mno-red-zone -O2
+HOST_CFLAGS := $(CFLAGS_COMMON) -O2
+
+BLOCK_SRCS := \
+	kernel/block/block_device.c \
+	kernel/block/ram_block_device.c
+
+BUILD := build/m14
+
+.PHONY: all clean host-test freestanding audit
+
+all: host-test freestanding audit
+
+$(BUILD):
+	mkdir -p $(BUILD)
+
+host-test: $(BUILD)
+	$(HOSTCC) $(HOST_CFLAGS) $(BLOCK_SRCS) tests/host/m14_block_host_test.c -o $(BUILD)/m14_block_host_test
+	$(BUILD)/m14_block_host_test | tee $(BUILD)/host-test.log
+
+freestanding: $(BUILD)
+	$(CC) $(KERNEL_CFLAGS) -c kernel/block/block_device.c -o $(BUILD)/block_device.o
+	$(CC) $(KERNEL_CFLAGS) -c kernel/block/ram_block_device.c -o $(BUILD)/ram_block_device.o
+
+audit: freestanding
+	$(NM) -u $(BUILD)/block_device.o $(BUILD)/ram_block_device.o | tee $(BUILD)/nm-undefined.txt
+	$(READELF) -h $(BUILD)/block_device.o | tee $(BUILD)/readelf-block.txt
+	$(OBJDUMP) -d $(BUILD)/ram_block_device.o | tee $(BUILD)/objdump-ramblock.txt
+	sha256sum $(BUILD)/block_device.o $(BUILD)/ram_block_device.o $(BUILD)/m14_block_host_test > $(BUILD)/sha256sums.txt
+	@true
+
+clean:
+	rm -rf build/m14
