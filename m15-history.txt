@@ -1,0 +1,100 @@
+  857  nl -ba Makefile.m13
+  858  cat -te Makefile.m13 | sed -n '18,36p'
+  859  make -f Makefile.m13 host-test CC=clang HOSTCC=clang
+  860  make -f Makefile.m13 freestanding CC=clang
+  861  make -f Makefile.m13 audit CC=clang
+  862  git status
+  863  git add .
+  864  git commit -m "Complete M13 VFS RAMFS foundation"
+  865  git push -u origin praktikum-m13-vfs-ramfs
+  866  history | tail -100 > m13-history.txt
+  867  git add m13-history.txt
+  868  git commit -m "Add M13 development history"
+  869  git push
+  870  git checkout -b praktikum-m13-vfs-ramfs
+  871  ...
+  872  git push
+  873  history | tail -100 > m13-history.txt
+  874  history | grep -n "git checkout -b praktikum-m13-vfs-ramfs"
+  875  history | tail -50
+  876  cd ~/src/mcsos
+  877  git branch
+  878  git checkout -b praktikum-m14-block-device
+  879  mkdir -p include/mcsos kernel/block tests/host artifacts/m14 scripts
+  880  git branch
+  881  tree -L 2 include kernel tests
+  882  nano include/mcsos/block.h
+  883  wc -l include/mcsos/block.h
+  884  nano kernel/block/block_device.c
+  885  wc -l kernel/block/block_device.c
+  886  nano kernel/block/ram_block_device.c
+  887  wc -l kernel/block/ram_block_device.c
+  888  nano tests/host/m14_block_host_test.c
+  889  wc -l tests/host/m14_block_host_test.c
+  890  nano Makefile.m14
+  891  cat -te Makefile.m14 | sed -n '15,40p'
+  892  make -f Makefile.m14 host-test CC=clang HOSTCC=clang
+  893  make -f Makefile.m14 freestanding CC=clang
+  894  make -f Makefile.m14 audit CC=clang
+  895  head -5 kernel/block/block_device.c
+  896  head -5 kernel/block/ram_block_device.c
+  897  nano kernel/block/block_device.c
+  898  nano kernel/block/ram_block_device.c
+  899  make -f Makefile.m14 host-test CC=clang HOSTCC=clang
+  900  make -f Makefile.m14 freestanding CC=clang
+  901  make -f Makefile.m14 audit CC=clang
+  902  nano Makefile.m14
+  903  make -f Makefile.m14 audit CC=clang
+  904  git status
+  905  git restore m13-history.txt
+  906  git status
+  907  git add Makefile.m14
+  908  git add include/mcsos/block.h
+  909  git add kernel/block
+  910  git add tests/host
+  911  git commit -m "Complete M14 block device foundation"
+  912  git push -u origin praktikum-m14-block-device
+  913  history | tail -100 > m14-history.txt
+  914  git add m14-history.txt
+  915  git commit -m "Add M14 development history"
+  916  git push
+  917  git restore m13-history.txt
+  918  git status
+  919  cat m14-history.txt
+  920  cd ~/src/mcsos
+  921  git branch
+  922  git status
+  923  git switch -c praktikum-m15-mcsfs1
+  924  mkdir -p fs/mcsfs1 tests/m15 artifacts/m15
+  925  git branch
+  926  tree -L 2 fs tests artifacts
+  927  nano fs/mcsfs1/mcsfs1.h
+  928  wc -l fs/mcsfs1/mcsfs1.h
+  929  nano fs/mcsfs1/mcsfs1.c
+  930  wc -l fs/mcsfs1/mcsfs1.c
+  931  nano tests/m15/test_mcsfs1.c
+  932  wc -l tests/m15/test_mcsfs1.c
+  933  nano Makefile.m15
+  934  make -f Makefile.m15 clean
+  935  make -f Makefile.m15 CC=clang m15-all
+  936  head -5 fs/mcsfs1/mcsfs1.c
+  937  head -5 tests/m15/test_mcsfs1.c
+  938  nano fs/mcsfs1/mcsfs1.c
+  939  nano tests/m15/test_mcsfs1.c
+  940  head -2 fs/mcsfs1/mcsfs1.c
+  941  tail -2 fs/mcsfs1/mcsfs1.c
+  942  head -2 tests/m15/test_mcsfs1.c
+  943  tail -2 tests/m15/test_mcsfs1.c
+  944  nano fs/mcsfs1/mcsfs1.c
+  945  rm fs/mcsfs1/mcsfs1.c
+  946  ls fs/mcsfs1
+  947  rm fs/mcsfs1/mcsfs1.c
+  948  nano fs/mcsfs1/mcsfs1.c
+  949  head -5 fs/mcsfs1/mcsfs1.c
+  950  make -f Makefile.m15 clean
+  951  make -f Makefile.m15 CC=clang m15-all
+  952  git status
+  953  git add .
+  954  git commit -m "Complete M15 MCSFS1 foundation"
+  955  git push -u origin praktikum-m15-mcsfs1
+  956  history | tail -100 > m15-history.txt
